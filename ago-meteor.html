@@ -1,0 +1,49 @@
+<head>
+  <title>ago-meteor</title>
+</head>
+
+<body>
+    {{> page}}
+    {{> fbconnect}}
+</body>
+
+<template name="page">
+    <div class="bg-transparent-grey">
+        <div class="content">
+            <div id="header">
+                <object class="verticaly-centered-block" data="clock.svg" type="image/svg+xml"></object>
+                <h1 class="verticaly-centered-block" id="title">Ago</h1>
+            </div>
+
+            {{#if fbConnected}}
+                <h2> Hollah Ryan </h2>
+                {{> timeMachine}}
+            {{else}}
+                {{> greeting}}
+            {{/if}}
+            <!-- <input type="button" value="Click" /> -->
+        </div>
+    </div>
+    <div class="bg-image blur" style="background-image:url('{{imagePath}}')"></div>
+</template>
+
+<template name="fbconnect">
+    <div id="fb-root"></div>
+    {{connect}}
+</template>
+
+<template name="fbconnect-button">
+    <fb:login-button show-faces="false" width="200" max-rows="1" scope="publish_actions">
+    </fb:login-button>
+</template>
+
+<template name="greeting">
+    <h2>Hello!</h2>
+    <div id="fb-button">
+        {{> fbconnect-button}}
+    </div>
+</template>
+
+<template name="timeMachine">
+    <h2>This is a time machine.</h2>
+</template>
