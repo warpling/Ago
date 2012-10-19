@@ -8,6 +8,10 @@ body, html {
     background-color: #4E4E4E;
 }
 
+::selection {
+    background-color: #E3E3E3;
+}
+
 div {
     display: block;
 }
