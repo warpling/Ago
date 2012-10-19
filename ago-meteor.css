@@ -83,7 +83,7 @@ div {
     text-align: center;
 }
 
-#greetingMessage {
+.static-message {
     text-align: left;
     display: inline-block;
 }
