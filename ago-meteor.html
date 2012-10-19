@@ -35,16 +35,17 @@
     <div class="static-message">
         <h2>What were you doing one year ago?</h2>
         <h2>Where were you? Who were you?</h2>
-        <h2 class="underlined">Find out.</h2>
-        <div id="fb-button">
-            {{> fbconnect-button}}
-        </div>
+        <h2 class="underlined" class="find-out">Find out.</h2>
+        <input type="button" value="Find out." class="find-out">
+        {{> fbconnect-button}}
     </div>
 </template>
 
 <template name="fbconnect-button">
-    <fb:login-button show-faces="false" width="200" max-rows="1" scope="publish_actions">
-    </fb:login-button>
+    <div id="fb-button">
+        <fb:login-button show-faces="false" width="200" max-rows="1" scope="publish_actions">
+        </fb:login-button>
+    </div>
 </template>
 
 <template name="timeMachine">

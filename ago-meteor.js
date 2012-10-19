@@ -16,11 +16,11 @@ if (Meteor.isClient) {
         return !!isFBConnected;
     };
 
-    Template.page.events({
-        'click input' : function () {
-          // template data, if any, is available in 'this'
-          if (typeof console !== 'undefined')
-            console.log("You pressed the button");
+    Template.greeting.events({
+        'click .find-out': function (event, template) {
+            console.log("you pressed it!");
+            return false;
+            // Meteor.loginWithFacebook(callback)
         }
     });
 
