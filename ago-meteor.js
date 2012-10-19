@@ -8,7 +8,7 @@ if (Meteor.isClient) {
     };
 
     var isFacebookAuthorized = function () {
-        return Session.get('fbConnected');
+        return !!Session.get('fbConnected');
     }
 
     Template.page.fbConnected = function () {
