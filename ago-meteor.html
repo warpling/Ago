@@ -16,7 +16,6 @@
             </div>
 
             {{#if fbConnected}}
-                <h2> Hollah Ryan </h2>
                 {{> timeMachine}}
             {{else}}
                 {{> greeting}}
@@ -32,18 +31,25 @@
     {{connect}}
 </template>
 
+<template name="greeting">
+    <div id="greetingMessage">
+        <h2>What were you doing one year ago?</h2>
+        <h2>Where were you? Who were you?</h2>
+        <h2 class="underlined">Find out.</h2>
+        <div id="fb-button">
+            {{> fbconnect-button}}
+        </div>
+    </div>
+</template>
+
 <template name="fbconnect-button">
     <fb:login-button show-faces="false" width="200" max-rows="1" scope="publish_actions">
     </fb:login-button>
 </template>
 
-<template name="greeting">
-    <h2>Hello!</h2>
-    <div id="fb-button">
-        {{> fbconnect-button}}
-    </div>
-</template>
-
 <template name="timeMachine">
-    <h2>This is a time machine.</h2>
+    <div id="greetingMessage"> 
+        <h2> Hollah Ryan.</h2>
+        <h2>This is a time machine.</h2>
+    </div>
 </template>

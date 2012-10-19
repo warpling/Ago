@@ -1,13 +1,18 @@
 if (Meteor.isClient) {
-    Template.page.greeting = function () {
-        return "Hello world!";
-    };
 
     Template.page.imagePath = function () {
-        return "test.jpg";
+        if(isFacebookAuthorized())
+            return "test.jpg"
+        else
+            return "fallen%20leaves%20compressed.jpg";
     };
 
+    var isFacebookAuthorized = function () {
+        return Session.get('fbConnected');
+    }
+
     Template.page.fbConnected = function () {
+        var a = 5;
         var isFBConnected = Session.get('fbConnected');
         console.log("fbConnected returned " + !!isFBConnected);
         return !!isFBConnected;
