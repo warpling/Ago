@@ -1,15 +1,13 @@
 if (Meteor.isClient) {
 
+    // Greetings and Such -----------------------------------------------------
+
     Template.page.imagePath = function () {
         if(isFacebookAuthorized())
             return "test.jpg"
         else
             return "fallen%20leaves%20compressed.jpg";
     };
-
-    var isFacebookAuthorized = function () {
-        return !!Session.get('fbConnected');
-    }
 
     Template.page.fbConnected = function () {
         var a = 5;
@@ -25,6 +23,8 @@ if (Meteor.isClient) {
             console.log("You pressed the button");
         }
     });
+
+    // Facebook ---------------------------------------------------------------
 
     Template.fbconnect.connect = function () {
         window.fbAsyncInit = function() {
@@ -81,8 +81,14 @@ if (Meteor.isClient) {
         }(document));
     };
 
+    // Time Machine -----------------------------------------------------------
+
     Template.page.createTimeMachine = function() {
         return "This is a time-machine.";
+    }
+
+    var isFacebookAuthorized = function () {
+        return !!Session.get('fbConnected');
     }
 }
 
