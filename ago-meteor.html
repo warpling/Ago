@@ -15,12 +15,13 @@
                 <h1 class="verticaly-centered-block" id="title">Ago</h1>
             </div>
 
+            <!-- Need to make sure FB is initalized before calling this! -->
+            <!-- Except Meteor will handle it when it changes anyway -->
             {{#if fbConnected}}
                 {{> timeMachine}}
             {{else}}
                 {{> greeting}}
             {{/if}}
-            <!-- <input type="button" value="Click" /> -->
         </div>
     </div>
     <div class="bg-image blur" style="background-image:url('{{imagePath}}')"></div>
@@ -35,8 +36,8 @@
     <div class="static-message">
         <h2>What were you doing one year ago?</h2>
         <h2>Where were you? Who were you?</h2>
-        <h2 class="underlined" class="find-out">Find out.</h2>
-        <input type="button" value="Find out." class="find-out">
+        <h2 class="underlined find-out">Find out.</h2>
+        <!-- <input type="button" value="Find out." class="find-out"> -->
         {{> fbconnect-button}}
     </div>
 </template>
