@@ -18,8 +18,7 @@ if (Meteor.isClient) {
 
     Template.greeting.events({
         'click .find-out': function (event, template) {
-            console.log("you pressed it!");
-            return false;
+            fbLogin();
             // Meteor.loginWithFacebook(callback)
         }
     });
@@ -80,6 +79,12 @@ if (Meteor.isClient) {
           d.getElementsByTagName('head')[0].appendChild(js);
         }(document));
     };
+
+    var fbLogin = function () {
+        FB.login(function(response) {
+          //...
+        }, {scope:'read_stream,publish_stream,offline_access'});
+    }
 
     // Time Machine -----------------------------------------------------------
 
