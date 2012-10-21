@@ -1,104 +1,25 @@
 
 body, html {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    height   : 100%;
+    width    : 100%;
+    margin   : 0;
+    padding  : 0;
+    overflow : hidden;
     background-color: #4E4E4E;
 
-    color: white;
-    font-family: 'myriad-pro','Myriad Pro','Lucida Grande','Lucida Sans Unicode','Lucida Sans',Geneva,Verdana,sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
+    color       : white;
+    font-family : 'myriad-pro','Myriad Pro','Lucida Grande','Lucida Sans Unicode','Lucida Sans',Geneva,Verdana,sans-serif;
+    font-weight : 400;
+    font-size   : 16px;
+    line-height : 20px;
 }
 
 ::selection {
-    background-color: #E3E3E3;
+    background-color : #E3E3E3;
 }
 
 div {
-    display: block;
-}
-
-.bg-transparent-grey {
-    position:absolute;
-    z-index:100;
-    display:block;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    box-sizing:border-box;
-    width:100%;
-    height:100%;
-    border:15px solid transparent;
-    background-color:rgba(0,0,0,0.4)
-
-}
-
-.bg-image {
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-position: 50%;
-}
-
-.blur {
-    -webkit-filter:blur(6px);
-    -ms-filter:progid:dximagetransform.microsoft.blur(pixelradius=6px)
-}
-
-.content {
-    width: 100%;
-    height:;
-    padding: 15px;
-    text-align: center;
-}
-
-.verticaly-centered-block {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.underlined {
-    text-decoration: underline;
-}
-
-#title {
-    margin: 15px;
-    padding: 12px 0 0 5px;
-}
-
-#clock {
-    width: 100px;
-    height: 100px;
-}
-
-#fb-root {
-    display: none;
-}
-
-#fb-button {
-    text-align: center;
-}
-
-#header {
-    position: relative;
-    margin: 60px;
-    display: block;
-    vertical-align: middle;
-    text-align: center;
-}
-
-.static-message {
-    text-align: left;
-    display: inline-block;
+    display : block;
 }
 
 h1 {
@@ -118,8 +39,92 @@ h2 {
     font-family: 'myriad-pro','Myriad Pro','Lucida Grande','Lucida Sans Unicode','Lucida Sans',Geneva,Verdana,sans-serif;
     font-weight: 620;
     font-size: 35px;
-    line-height: 40px;
+    line-height: 44px;
     letter-spacing: 0.04em;
 
+}
+
+.overlay-box {
+    top        : 0;
+    left       : 0;
+    position   : absolute;
+    z-index    : 100;
+    display    : block;
+    width      : 100%;
+    height     : 100%;
+    min-height : 100%;
+    /*border   : 15px solid transparent;*/
+    padding    : 15px;
+    background-color : rgba(0,0,0,0.4);
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+
+}
+
+.bg-image {
+    top                     : 0;
+    left                    : 0;
+    height                  : 100%;
+    width                   : 100%;
+    position                : absolute;
+    -webkit-background-size : cover;
+    -moz-background-size    : cover;
+    -o-background-size      : cover;
+    background-size         : cover;
+    background-position     : 50%;
+}
+
+.blur {
+    -webkit-filter:blur(6px);
+    -ms-filter:progid:dximagetransform.microsoft.blur(pixelradius=6px)
+}
+
+.content {
+    /*width      : 100%;*/
+    height     : 100%;
+    min-height : 100%;
+    padding    : 20px 40px;
+    text-align : center;
+}
+
+.verticaly-centered-block {
+    display        : inline-block;
+    vertical-align : middle;
+}
+
+.underlined {
+    text-decoration : underline;
+}
+
+#title {
+    margin  : 15px;
+    padding : 12px 0 0 5px;
+}
+
+#clock {
+    width  : 100px;
+    height : 100px;
+}
+
+#fb-root {
+    display : none;
+}
+
+#fb-button {
+    text-align : center;
+}
+
+#header {
+    position       : relative;
+    margin         : 40px 0 60px 0;
+    display        : block;
+    vertical-align : middle;
+    text-align     : center;
+}
+
+.static-message {
+    /*text-align: left;*/
+    display: block;
 }
 
