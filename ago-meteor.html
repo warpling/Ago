@@ -15,21 +15,18 @@
                 <h1 class="verticaly-centered-block" id="title">Ago</h1>
             </div>
 
-            <!-- Need to make sure FB is initalized before calling this! -->
-            <!-- Except Meteor will handle it when it changes anyway -->
-            {{#if fbConnected}}
-                {{> timeMachine}}
+            {{#if fbApiInit}}
+                {{#if fbAuthorized}}
+                    {{> timeMachine}}
+                {{else}}
+                    {{> greeting}}
+                {{/if}}
             {{else}}
-                {{> greeting}}
+                <h2>The warp drive needs more flux capacitors, brb.</h2>
             {{/if}}
         </div>
     </div>
     <div class="bg-image blur" style="background-image:url('{{imagePath}}')"></div>
-</template>
-
-<template name="fbconnect">
-    <div id="fb-root"></div>
-    {{connect}}
 </template>
 
 <template name="greeting">
@@ -38,6 +35,11 @@
         <h2>Where were you? Who were you?</h2>
         <h2 class="underlined find-out">Find out.</h2>
     </div>
+</template>
+
+<template name="fbconnect">
+    <div id="fb-root"></div>
+    {{connect}}
 </template>
 
 <template name="fbconnect-button">
@@ -49,7 +51,7 @@
 
 <template name="timeMachine">
     <div class="static-message"> 
-        <h2> Hollah Ryan.</h2>
-        <h2>This is a time machine.</h2>
+        <h2>Hold tight{{getFirstName}}, we're about to go back in time.</h2>
+        <h2>Yes, shut up, this is a real time machine.</h2>
     </div>
 </template>
