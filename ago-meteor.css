@@ -6,6 +6,12 @@ body, html {
     padding: 0;
     overflow: hidden;
     background-color: #4E4E4E;
+
+    color: white;
+    font-family: 'myriad-pro','Myriad Pro','Lucida Grande','Lucida Sans Unicode','Lucida Sans',Geneva,Verdana,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
 }
 
 ::selection {
