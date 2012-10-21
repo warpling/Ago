@@ -2,7 +2,6 @@
 
 Meteor.methods({});
 
-
 var connect = function () {
     window.fbAsyncInit = function() {
         FB.init({
@@ -30,7 +29,8 @@ var connect = function () {
                 var uid = response.authResponse.userID;
                 var accessToken = response.authResponse.accessToken;
 
-                console.log("Logged in and connected (uid: " + uid + " token: " + accessToken + ")");
+                // console.log("Logged in and connected (uid: " + uid + " token: " + accessToken + ")");
+                console.log("Logged in and connected (uid: " + uid + ")");
                 // Do the ago magic...
                 Session.set('fbAuthorized', true);
                 // goBackInTime();
@@ -77,10 +77,18 @@ var fbLogin = function () {
     }, {scope:'user_status, user_photos'});
 };
 
+var isFacebookApiInit = function () {
+    return !!Session.get('fbApiInit');
+}
+
+var isFacebookAuthorized = function () {
+    return !!Session.get('fbAuthorized');
+}
+
 var getFirstName = function () {
     // Check if we're authorized (even though we should be) just in case the rug gets pulled out from under us
-    // if(!isFacebookApiInit() || !isFacebookAuthorized())
-        // return "";
+    if(!isFacebookApiInit() || !isFacebookAuthorized())
+        return "";
 
     FB.api('/me', function(response) {
         Session.set('first_name', response.first_name);

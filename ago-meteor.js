@@ -12,21 +12,13 @@ if (Meteor.isClient) {
             return "fallen%20leaves%20compressed.jpg";
     };
 
-    Template.page.fbAuthorized = function () {
-        return isFacebookAuthorized();
-    };
-
     Template.page.fbApiInit = function () {
         return isFacebookApiInit();
     }
 
-    var isFacebookAuthorized = function () {
-        return !!Session.get('fbAuthorized');
-    }
-
-    var isFacebookApiInit = function () {
-        return !!Session.get('fbApiInit');
-    }
+    Template.page.fbAuthorized = function () {
+        return isFacebookAuthorized();
+    };
 
     Template.greeting.events({
         'click .find-out': function (event, template) {
