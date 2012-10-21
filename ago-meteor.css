@@ -23,9 +23,9 @@ div {
 }
 
 .bg-transparent-grey {
-    position:relative;
+    position:absolute;
     z-index:100;
-    /*display:block;*/
+    display:block;
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing:border-box;
@@ -57,9 +57,7 @@ div {
 .content {
     width: 100%;
     height:;
-    border: 15px solid transparent;
-    /*padding: 15px;*/
-    color: white;
+    padding: 15px;
     text-align: center;
 }
 
@@ -75,6 +73,15 @@ div {
 #title {
     margin: 15px;
     padding: 12px 0 0 5px;
+}
+
+#clock {
+    width: 100px;
+    height: 100px;
+}
+
+#fb-root {
+    display: none;
 }
 
 #fb-button {

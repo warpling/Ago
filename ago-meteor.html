@@ -10,10 +10,12 @@
 <template name="page">
     <div class="bg-transparent-grey">
         <div class="content">
+            {{#constant}}
             <div id="header">
-                <object class="verticaly-centered-block" data="clock.svg" type="image/svg+xml"></object>
+                <object class="verticaly-centered-block" id="clock" data="clock.svg" type="image/svg+xml"></object>
                 <h1 class="verticaly-centered-block" id="title">Ago</h1>
             </div>
+            {{/constant}}
 
             {{#if fbApiInit}}
                 {{#if fbAuthorized}}
