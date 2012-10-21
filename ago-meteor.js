@@ -46,6 +46,16 @@ if (Meteor.isClient) {
         var name = getFirstName();
         return name ? (" " + name) : ""; 
     }
+
+    Template.timeMachine.getLatestStatus = function () {
+        getLatestStatus();
+        return Session.get("latest_status")
+    }
+
+    Template.timeMachine.loading = function () {
+        // Check if statuses have come back yet and been parsed...
+        return !Session.get("latest_status");
+    }
 }
 
 if (Meteor.isServer) {

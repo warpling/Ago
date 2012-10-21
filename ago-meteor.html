@@ -3,12 +3,12 @@
 </head>
 
 <body>
-    {{> page}}
     {{> fbconnect}}
+    {{> page}}
 </body>
 
 <template name="page">
-    <div class="bg-transparent-grey">
+    <div class="overlay-box">
         <div class="content">
             {{#constant}}
             <div id="header">
@@ -24,9 +24,10 @@
                     {{> greeting}}
                 {{/if}}
             {{else}}
-                {{> greeting}}
+                {{loading}}
             {{/if}}
         </div>
+        <!-- {{> footer}} -->
     </div>
     <div class="bg-image blur" style="background-image:url('{{imagePath}}')"></div>
 </template>
@@ -52,9 +53,24 @@
 </template>
 
 <template name="timeMachine">
-    <div class="static-message"> 
-        <h2>Hold tight{{getFirstName}}, we're about to go back in time.</h2>
-        <h2>Yes, shut up, this is a real time machine.</h2>
+    <div class="static-message">
+        {{#if loading}}
+            <h2>Hold tight{{getFirstName}}, we're about to go back in time.</h2>
+            <h2>Yes, shut up, this is a real time machine.</h2>
+        {{else}}
+            <h2>{{getLatestStatus}}</h2>
+        {{/if}}
     </div>
 </template>
 
+<template name="loading">
+    <div class="static-message">
+        <h2>Loading…</h2>
+    </div>
+</template>
+
+<template name="footer">
+    <div id="footer">
+        <h5>His name was Ryan McLeod</h5>
+    </div>
+</template>
