@@ -125,7 +125,6 @@ var getYearAgoPhoto = function () {
 
         function (response) {
 
-            debugger;
             if(response.error_code) {
                 console.log("Unable to retreive profile photos: " + response.error_msg);
                 return;
@@ -194,7 +193,6 @@ var addStatusesToList = function (response) {
         if(response.data && response.data.length > 0) {
 
             var returnedStatuses = response.data;
-            // debugger;
 
             // Add statuses to our list
             for (var i = 0; i < returnedStatuses.length; i++) {
@@ -205,7 +203,6 @@ var addStatusesToList = function (response) {
             for (var i = offset; i < statuses.length; i++) {
                 
                 var curStatusTime = noOffset(statuses[i].updated_time) / 1000;
-                // debugger;
                 if(curStatusTime < targetTime) {
                     // We either passed it or are on it...
 
@@ -229,7 +226,6 @@ var addStatusesToList = function (response) {
                     return;
                 }
             }
-            // debugger;
 
             // Get next set
             offset += limit;
@@ -237,7 +233,6 @@ var addStatusesToList = function (response) {
         }
         else {
             Session.set('oneYearAgoStatus', {message:'Error: the time machine fell apart, one sec…', error:true});
-            // debugger;
             // There are no more statuses to add
         }
     }
