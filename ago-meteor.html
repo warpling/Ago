@@ -54,11 +54,11 @@
 
 <template name="timeMachine">
     <div class="static-message">
-        {{#if loading}}
+        {{#if yearAgoStatus}}
+            <h2>{{yearAgoStatus}}</h2>
+        {{else}}
             <h2>Hold tight{{getFirstName}}, we're about to go back in time.</h2>
             <h2>Yes, shut up, this is a real time machine.</h2>
-        {{else}}
-            <h2>{{getLatestStatus}}</h2>
         {{/if}}
     </div>
 </template>

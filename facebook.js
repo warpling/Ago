@@ -94,6 +94,8 @@ var getFirstName = function () {
         Session.set('first_name', response.first_name);
     }); 
 
+    // Obvious race condition??
+
     return Session.get('first_name');
 };
 
@@ -107,12 +109,24 @@ var getLatestStatus = function () {
     }); 
 }
 
-var fetch14Months = function () {
-    FB.api('/me/statuses?fields=message&since=2011-10-01&limit=300', function(response) {
-        debugger;
-        if(response.data && response.data.length > 0) {
-                        Session.set('latest_status', response.data[0].message);
+var getYearAgoStatus = function () {
 
+    console.log("getting year ago status");
+
+    var now = Math.floor(new Date() / 1000);
+    var tStamp = now - (60*60*24*426); // now - ~14 months
+    FB.api('/me/statuses?fields=message&since=' + tStamp + '&limit=5000', function(response) {
+        // debugger;
+        var returnedStatuses = response.data;
+        if(returnedStatuses && returnedStatuses.length > 0) {
+            for (var i = 0; i < returnedStatuses.length; i++) {
+                statuses.push(returnedStatuses[i]);
+            };
+            Session.set('oneYearAgo', response.data[0].message);
+            // debugger;
+        }
+        else {
+            console.log("Error parsing Facebook response.");
         }
     }); 
 }

@@ -3,6 +3,7 @@ if (Meteor.isClient) {
     // var FB;
     Session.set('fbApiInit', false);
     Session.set('fbAuthorized', false);
+    Session.set('yearAgoStatus', false);
 
     // Page (general stuff) -----------------------------------------------------
     Template.page.imagePath = function () {
@@ -47,15 +48,31 @@ if (Meteor.isClient) {
         return name ? (" " + name) : ""; 
     }
 
-    Template.timeMachine.getLatestStatus = function () {
-        getLatestStatus();
-        return Session.get("latest_status")
+    // Template.timeMachine.readyToReturnYearAgoStatus = function () {
+    //     return !!Session.get("oneYearAgo")
+    // }
+
+    // Template.timeMachine.getLatestStatus = function () {
+    //     getLatestStatus();
+    //     return Session.get("latest_status")
+    // }
+
+    Template.timeMachine.yearAgoStatus = function () {
+        
+        var status = Session.get('oneYearAgo'); 
+
+        console.log("checking for yearAgoStatus: " + status);
+
+        if(!status)
+            getYearAgoStatus();
+        else
+            return status;
     }
 
-    Template.timeMachine.loading = function () {
-        // Check if statuses have come back yet and been parsed...
-        return !Session.get("latest_status");
-    }
+    // Template.timeMachine.loading = function () {
+    //     // Check if statuses have come back yet and been parsed...
+    //     return !Session.get("latest_status");
+    // }
 }
 
 if (Meteor.isServer) {
