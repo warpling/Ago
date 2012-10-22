@@ -115,7 +115,7 @@ var getYearAgoPhoto = function () {
 }
 
 var addPhotosToList = function (response) {
-    
+
 }
 
 var getYearAgoStatus = function () {
@@ -137,7 +137,7 @@ var addStatusesToList = function (response) {
 
     if (!response) {
         // There was an error, there should always be a valid repsonse
-        Console.log("No response received to add to statuses list.");
+        console.log("No response received. It's likely there was likely an error in Facebook api call.");
         // findAndSetYearAgoStatus();
     }
     else if (response) {
@@ -154,24 +154,28 @@ var addStatusesToList = function (response) {
             // Search for the one we want
             for (var i = offset; i < statuses.length; i++) {
                 
-                // TODO: edge case handling of first result being target
-
                 var curStatusTime = noOffset(statuses[i].updated_time) / 1000;
                 // debugger;
                 if(curStatusTime < targetTime) {
-                    // Wait, we either passed it or are on it.
-                    var prevStatusTime = (new Date(statuses[i-1].updated_time)) / 1000;
+                    // We either passed it or are on it...
 
-                    var diffCurrent  = Math.abs(targetTime - curStatusTime);
-                    var diffPrevious = Math.abs(targetTime - prevStatusTime);
-                    
-                    if(diffCurrent < diffPrevious) {
+                    // edge case handling of first returned status being more than a year old
+                    if(i == 0) {
                         Session.set('oneYearAgoStatus', statuses[i]);
                     }
                     else {
-                        Session.set('oneYearAgoStatus', statuses[i-1]);
-                    }
+                        var prevStatusTime = (new Date(statuses[i-1].updated_time)) / 1000;
 
+                        var diffCurrent  = Math.abs(targetTime - curStatusTime);
+                        var diffPrevious = Math.abs(targetTime - prevStatusTime);
+                        
+                        if(diffCurrent < diffPrevious) {
+                            Session.set('oneYearAgoStatus', statuses[i]);
+                        }
+                        else {
+                            Session.set('oneYearAgoStatus', statuses[i-1]);
+                        }
+                    }
                     return;
                 }
             }
