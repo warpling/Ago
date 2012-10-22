@@ -14,7 +14,7 @@ if (Meteor.isClient) {
         if (!photo)
             return "fallen%20leaves%20compressed.jpg";
         else
-            return photo;
+            return photo.src_big;
     };
 
     Template.page.fbApiInit = function () {

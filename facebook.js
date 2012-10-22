@@ -99,9 +99,10 @@ var getFirstName = function () {
     return Session.get('first_name');
 };
 
+/* Variables for Facebook processing */
 var statuses = [];
-var offset, limit = 100;
-var targetTime;
+var offset = 0, limit = 100;
+var targetTime, now = Math.floor(new Date() / 1000);
 
 var getLatestStatus = function () {
     FB.api('/me/statuses?fields=message&since=2011-10-01&limit=300', function(response) {
@@ -112,19 +113,68 @@ var getLatestStatus = function () {
 
 var getYearAgoPhoto = function () {
 
-}
+    console.log("Fetching photos using limit/offset method...");
 
-var addPhotosToList = function (response) {
+    // We can use FQL here since this part of Facebook's API isn't broken
+    FB.api({
+        method: 'fql.multiquery',
+        queries: {
+            userAlbums    : "SELECT aid FROM album WHERE owner=me() AND name='Profile Pictures'",
+            profilePhotos : "SELECT src_big, object_id, created FROM photo WHERE aid IN (select aid from #userAlbums)"
+        }},
 
+        function (response) {
+
+            debugger;
+            if(response.error_code) {
+                console.log("Unable to retreive profile photos: " + response.error_msg);
+                return;
+            }
+
+            var photos = response[1].fql_result_set;
+
+            // In case Facebook decides to change up the order on us...
+            if(photos.name !== "profilePhotos" && response[0].name === "profilePhotos")
+                photos = response[0].fql_result_set;
+
+            for (var i = 0; i < photos.length; i++) {
+
+                var curPhotoTime = photos[i].created;
+
+                if(curPhotoTime < targetTime) {
+                    // We either passed it or are on it...
+
+                    // edge case handling of first returned status being more than a year old
+                    if(i == 0) {
+                        Session.set('oneYearAgoPhoto', photos[i]);
+                    }
+                    else {
+                        var prevPhotoTime = photos[i-1].created;
+
+                        var diffCurrent  = Math.abs(targetTime - curPhotoTime);
+                        var diffPrevious = Math.abs(targetTime - prevPhotoTime);
+                        
+                        if(diffCurrent < diffPrevious) {
+                            Session.set('oneYearAgoPhoto', photos[i]);
+                        }
+                        else {
+                            Session.set('oneYearAgoPhoto', photos[i-1]);
+                        }
+                    }
+                    return;
+                }
+            }
+
+        }
+    );
 }
 
 var getYearAgoStatus = function () {
 
-    console.log("Fetching staus from a year ago using limit/offset method...");
+    console.log("Fetching stauses using limit/offset method...");
 
     statuses = [];
     offset = 0;
-    var now = Math.floor(new Date() / 1000);
     // Figure out a more acurate way to compute this perhaps?
     targetTime = now - (60*60*24*365); // now - 12 months
 
