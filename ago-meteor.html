@@ -53,9 +53,22 @@
 </template>
 
 <template name="timeMachine">
-    <div class="static-message">
-        {{#if yearAgoStatus}}
-            <h2>{{yearAgoStatus}}</h2>
+        {{#if yearAgoStatusMessage}}
+            {{#if error}}
+                <div class="error">
+                    <h1>Time machine fell apart, one sec…</h1>
+                </div>
+            {{else}}
+                <div id="status" class="static-message">
+                    <div id="time">
+                        <h2>one&nbsp;</h2>
+                        <h2>year ago…</h2>
+                    </div>
+                    <div id="message">
+                        <h2>{{yearAgoStatusMessage}}</h2>
+                    </div>
+                </div>
+            {{/if}}
         {{else}}
             <h2>Hold tight{{getFirstName}}, we're about to go back in time.</h2>
             <h2>Yes, shut up, this is a real time machine.</h2>

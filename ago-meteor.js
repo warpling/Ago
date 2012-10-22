@@ -3,11 +3,11 @@ if (Meteor.isClient) {
     // var FB;
     Session.set('fbApiInit', false);
     Session.set('fbAuthorized', false);
-    Session.set('yearAgoStatus', false);
+    Session.set('oneYearAgoStatus', false);
 
     // Page (general stuff) -----------------------------------------------------
     Template.page.imagePath = function () {
-        if(isFacebookAuthorized())
+        if (isFacebookAuthorized())
             return "test.jpg"
         else
             return "fallen%20leaves%20compressed.jpg";
@@ -41,7 +41,7 @@ if (Meteor.isClient) {
 
     Template.timeMachine.getFirstName = function () {
         // Check if we're authorized (even though we should be) just in case the rug gets pulled out from under us
-        // if(!isFacebookApiInit() || !isFacebookAuthorized())
+        // if (!isFacebookApiInit() || !isFacebookAuthorized())
             // return " x";
 
         var name = getFirstName();
@@ -49,7 +49,7 @@ if (Meteor.isClient) {
     }
 
     // Template.timeMachine.readyToReturnYearAgoStatus = function () {
-    //     return !!Session.get("oneYearAgo")
+    //     return !!Session.get("oneYearAgoStatus")
     // }
 
     // Template.timeMachine.getLatestStatus = function () {
@@ -57,17 +57,21 @@ if (Meteor.isClient) {
     //     return Session.get("latest_status")
     // }
 
-    Template.timeMachine.yearAgoStatus = function () {
+    Template.timeMachine.yearAgoStatusMessage = function () {
         
-        var status = Session.get('oneYearAgo'); 
+        var status = Session.get('oneYearAgoStatus'); 
+        console.log("checking for yearAgoStatus: " + status.message);
 
-        console.log("checking for yearAgoStatus: " + status);
-
-        if(!status)
+        if (!status)
             getYearAgoStatus();
         else
-            return status;
+            return status.message;
     }
+
+    Template.timeMachine.error = function () {
+        var status = Session.get('oneYearAgoStatus'); 
+        return status && status.error;
+}
 
     // Template.timeMachine.loading = function () {
     //     // Check if statuses have come back yet and been parsed...
