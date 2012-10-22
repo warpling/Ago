@@ -107,8 +107,15 @@ var getLatestStatus = function () {
     FB.api('/me/statuses?fields=message&since=2011-10-01&limit=300', function(response) {
         if (response.data && response.data.length > 0)
             Session.set('latest_status', response.data[0].message);
-
     }); 
+}
+
+var getYearAgoPhoto = function () {
+
+}
+
+var addPhotosToList = function (response) {
+    
 }
 
 var getYearAgoStatus = function () {

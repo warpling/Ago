@@ -4,13 +4,17 @@ if (Meteor.isClient) {
     Session.set('fbApiInit', false);
     Session.set('fbAuthorized', false);
     Session.set('oneYearAgoStatus', false);
+    Session.set('oneYearAgoPhoto', false);
 
     // Page (general stuff) -----------------------------------------------------
     Template.page.imagePath = function () {
-        if (isFacebookAuthorized())
-            return "test.jpg"
-        else
+
+        var photo = Session.get('oneYearAgoPhoto'); 
+
+        if (!photo)
             return "fallen%20leaves%20compressed.jpg";
+        else
+            return photo;
     };
 
     Template.page.fbApiInit = function () {
@@ -75,8 +79,10 @@ if (Meteor.isClient) {
         var status = Session.get('oneYearAgoStatus'); 
         console.log("checking for yearAgoStatus: " + status.message);
 
-        if (!status)
+        if (!status) {
             getYearAgoStatus();
+            getYearAgoPhoto();
+        }
         else
             return status.message;
     }
