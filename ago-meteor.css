@@ -24,7 +24,6 @@ div {
 
 h1 {
     display: inline;
-    /*color: white;*/
     font-family: 'myriad-pro','Myriad Pro','Lucida Grande','Lucida Sans Unicode','Lucida Sans',Geneva,Verdana,sans-serif;
     font-weight: 700;
     font-size: 70px;
@@ -35,7 +34,6 @@ h1 {
 h2 {
     display: block;
     margin: 5px;
-    /*color: white;*/
     font-family: 'myriad-pro','Myriad Pro','Lucida Grande','Lucida Sans Unicode','Lucida Sans',Geneva,Verdana,sans-serif;
     font-weight: 620;
     font-size: 35px;
@@ -98,6 +96,17 @@ h2 {
     color: #FF2200;
 }
 
+
+/* Title and logo */
+
+#header {
+    position       : relative;
+    margin         : 40px 0 120px 0;
+    display        : block;
+    vertical-align : middle;
+    text-align     : center;
+}
+
 #title {
     margin  : 15px;
     padding : 12px 0 0 5px;
@@ -108,33 +117,23 @@ h2 {
     height : 100px;
 }
 
+
+/* Facebook */
+
 #fb-root {
     display : none;
 }
 
-#fb-button {
-    text-align : center;
-}
 
-#header {
-    position       : relative;
-    margin         : 40px 0 120px 0;
-    display        : block;
-    vertical-align : middle;
-    text-align     : center;
-}
-
+/* The box that contains the status and time */
 #status {
-    /*border : 1px solid red;*/
-
     margin     : 0;
     display    : block;
     text-align : left;
 }
 
+/* The box that contains the time */
 #status #time {
-    /*border : 1px solid orange;*/
-
     margin         : 0;
     vertical-align : top;
     text-align     : center;
@@ -142,7 +141,7 @@ h2 {
     display        : inline-block;
 }
 
-/* the big ONE */
+/* The big 'ONE' */
 #status #time h2:first-child {
     padding-right  : .3em;
     font-size      : 80px;
@@ -150,13 +149,25 @@ h2 {
     line-height    : .55em;
 }
 
-#status #message {
-    /*border : 1px solid yellow;*/
+/* The quoted status message from yonder years */
 
-    vertical-align : top;
+#status #message {
     margin     : 0;
     text-align : left;
     width      : 60%;
     display    : inline-block;
+    vertical-align : top;
 }
 
+#status #message h2:lang(en)
+{
+    quotes     : "«" "»" "'" "'";
+}
+
+#status #message h2:before { 
+    content    : '\201C'; 
+} 
+
+#status #message h2:after { 
+    content    : '\201D'; 
+} 
