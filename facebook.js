@@ -168,7 +168,7 @@ var addStatusesToList = function (response) {
                     return;
                 }
             }
-            debugger;
+            // debugger;
 
             // Get next set
             offset += limit;

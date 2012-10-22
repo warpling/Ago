@@ -24,16 +24,16 @@
                     {{> greeting}}
                 {{/if}}
             {{else}}
-                {{loading}}
+                {{> loading}}
             {{/if}}
         </div>
-        <!-- {{> footer}} -->
+        {{> footer}}
     </div>
     <div class="bg-image blur" style="background-image:url('{{imagePath}}')"></div>
 </template>
 
 <template name="greeting">
-    <div class="static-message">
+    <div>
         <h2>What were you doing one year ago?</h2>
         <h2>Where were you? Who were you?</h2>
         <h2 class="underlined find-out">Find out.</h2>
@@ -59,7 +59,7 @@
                     <h1>Time machine fell apart, one sec…</h1>
                 </div>
             {{else}}
-                <div id="status" class="static-message">
+                <div id="status">
                     <div id="time">
                         <h2>one&nbsp;</h2>
                         <h2>year ago…</h2>
@@ -70,8 +70,10 @@
                 </div>
             {{/if}}
         {{else}}
-            <h2>Hold tight{{getFirstName}}, we're about to go back in time.</h2>
-            <h2>Yes, shut up, this is a real time machine.</h2>
+            <div style="padding:0 10%">
+                <h2>Hold tight{{getFirstName}}, we're about to go back in time.</h2>
+                <h2>{{funnyMessage}}</h2>
+            </div>
         {{/if}}
     </div>
 </template>
@@ -84,6 +86,6 @@
 
 <template name="footer">
     <div id="footer">
-        <h5>His name was Ryan McLeod</h5>
+        <!-- <h5>His name was Ryan McLeod</h5> -->
     </div>
 </template>

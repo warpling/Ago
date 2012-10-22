@@ -35,8 +35,21 @@ if (Meteor.isClient) {
 
     // Time Machine -----------------------------------------------------------
 
-    Template.page.createTimeMachine = function() {
-        return "This is a time-machine.";
+    Template.timeMachine.funnyMessage = function() {
+
+        var random = Math.floor(Math.random()*4)
+
+        switch(random) {
+            case 0:
+                return "If you like to talk a lot, hold tight…";
+            case 1:
+                return "If you're really popular you might even have time to read this whole sentence…";
+            case 2:
+                return "I've never actually done this before…";
+            default:
+                return "Keep your arms and legs inside the browser at all times…";
+        }
+
     }
 
     Template.timeMachine.getFirstName = function () {
