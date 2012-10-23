@@ -45,7 +45,7 @@ if (Meteor.isClient) {
 
         switch(random) {
             case 0:
-                return "If you like to talk a lot, hold tight…";
+                return "If you like to talk a lot, hang out…";
             case 1:
                 return "If you're really popular you might even have time to read this whole sentence…";
             case 2:
