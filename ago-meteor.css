@@ -9,7 +9,7 @@ body, html {
 
     color       : white;
     font-family : 'myriad-pro','Myriad Pro','Lucida Grande','Lucida Sans Unicode','Lucida Sans',Geneva,Verdana,sans-serif;
-    font-weight : 400;
+    font-weight : 600;
     font-size   : 16px;
     line-height : 20px;
 }
@@ -29,6 +29,10 @@ h1 {
     font-size: 70px;
     line-height: 50px;
     letter-spacing: -0.02em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0px 0px 10px #000;
+
 }
 
 h2 {
@@ -39,7 +43,23 @@ h2 {
     font-size: 35px;
     line-height: 1.1em;
     letter-spacing: 0.04em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0px 0px 8px #000;
 
+
+}
+h3 {
+    display: block;
+    margin: 5px;
+    font-family: 'myriad-pro','Myriad Pro','Lucida Grande','Lucida Sans Unicode','Lucida Sans',Geneva,Verdana,sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1em;
+    letter-spacing: 0em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0px 0px 6px #000;
 }
 
 .overlay-box {
@@ -191,3 +211,28 @@ h2 {
 #status #message h2:after { 
     content    : '\201D'; 
 } 
+
+/* Footer - everyone has one */
+#footer {
+    padding : 6px;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+
+#footer h3 {
+    color: #FFF;
+
+    filter         : alpha(opacity=50);
+    -moz-opacity   : 0.5;
+    -khtml-opacity : 0.5;
+    opacity        : 0.5;
+}
+
+
+/* Links */
+a:link {color:#FFF;}     /* unvisited link  */
+a:visited {color:#BBB;}  /* visited link    */
+a:hover {color:#DDD;}    /* mouse over link */
+a:active {color:#BBB;}   /* selected link   */
