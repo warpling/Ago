@@ -26,7 +26,7 @@ if (Meteor.isClient) {
     };
 
     Template.greeting.events({
-        'click .find-out': function (event, template) {
+        'click #find-out': function (event, template) {
             fbLogin();
             // Meteor.loginWithFacebook(callback)
         }

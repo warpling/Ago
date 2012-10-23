@@ -8,37 +8,30 @@
 </body>
 
 <template name="page">
-    <div class="overlay-box">
-        <div class="content">
+    <div class="overlay-box content">
             {{#constant}}
             <div id="header">
-                <object class="verticaly-centered-block" id="clock" data="clock.svg" type="image/svg+xml"></object>
-                <h1 class="verticaly-centered-block" id="title">Ago</h1>
+                <object id="clock" data="clock.svg" type="image/svg+xml"></object>
+                <h1 id="title">Ago</h1>
             </div>
             {{/constant}}
-
-            {{#if fbApiInit}}
-                {{#if fbAuthorized}}
-                    {{> timeMachine}}
+            <div class="vertically-centered">
+                {{#if fbApiInit}}
+                    {{#if fbAuthorized}}
+                        {{> timeMachine}}
+                    {{else}}
+                        {{> greeting}}
+                    {{/if}}
                 {{else}}
-                    {{> greeting}}
+                    {{> loading}}
                 {{/if}}
-            {{else}}
-                {{> loading}}
-            {{/if}}
-        </div>
+            </div>
         {{> footer}}
     </div>
     <div class="bg-image blur" style="background-image:url('{{imagePath}}')"></div>
 </template>
 
-<template name="greeting">
-    <div>
-        <h2>What were you doing one year ago?</h2>
-        <h2>Where were you? Who were you?</h2>
-        <h2 class="underlined find-out">Find out.</h2>
-    </div>
-</template>
+
 
 <template name="fbconnect">
     <div id="fb-root"></div>
@@ -52,35 +45,48 @@
     </div>
 </template>
 
-<template name="timeMachine">
-        {{#if yearAgoStatusMessage}}
-            {{#if error}}
-                <div class="error">
-                    <h1>Time machine fell apart, one sec…</h1>
-                </div>
-            {{else}}
-                <div id="status">
-                    <div id="time">
-                        <h2>one&nbsp;</h2>
-                        <h2>year ago…</h2>
-                    </div>
-                    <div id="message">
-                        <h2>{{yearAgoStatusMessage}}</h2>
-                    </div>
-                </div>
-            {{/if}}
-        {{else}}
-            <div style="padding:0 10%">
-                <h2>Hold tight{{getFirstName}}, we're about to go back in time.</h2>
-                <h2>{{funnyMessage}}</h2>
-            </div>
-        {{/if}}
+
+
+<template name="loading">
+    <div class="center-block">
+        <h2>Loading…</h2>
     </div>
 </template>
 
-<template name="loading">
-    <div class="static-message">
-        <h2>Loading…</h2>
+<template name="greeting">
+    <div class="center-block">
+        <div style="width:600px; display:inline-block; text-align:left">
+            <h2>What were you doing one year ago?</h2>
+            <h2>Where were you? Who were you?</h2>
+            <h2 class="underlined-link" id="find-out">Find out.</h2>
+        </div>
+    </div>
+</template>
+
+<template name="timeMachine">
+    <div class="center-block">
+    {{#if yearAgoStatusMessage}}
+        {{#if error}}
+            <div class="error">
+                <h1>Time-machine fell apart, give us a sec…</h1>
+            </div>
+        {{else}}
+            <div id="status">
+                <div id="time">
+                    <h2>one</h2>
+                    <h2>year ago…</h2>
+                </div>
+                <div id="message">
+                    <h2>{{yearAgoStatusMessage}}</h2>
+                </div>
+            </div>
+        {{/if}}
+    {{else}}
+        <div class="center-block">
+            <h2>Hold tight{{getFirstName}}, we're about to go back in time.</h2>
+            <h2>{{funnyMessage}}</h2>
+        </div>
+    {{/if}}
     </div>
 </template>
 
