@@ -136,31 +136,35 @@ var getYearAgoPhoto = function () {
             if(photos.name !== "profilePhotos" && response[0].name === "profilePhotos")
                 photos = response[0].fql_result_set;
 
-            for (var i = 0; i < photos.length; i++) {
+            // If the earliest photo in the set is still farther in the future than the targetTime, don't bother searching through it.
+            if(photos[photos.length() - 1].created <= targetTime) {
 
-                var curPhotoTime = photos[i].created;
+                for (var i = 0; i < photos.length; i++) {
 
-                if(curPhotoTime < targetTime) {
-                    // We either passed it or are on it...
+                    var curPhotoTime = photos[i].created;
 
-                    // edge case handling of first returned status being more than a year old
-                    if(i == 0) {
-                        Session.set('oneYearAgoPhoto', photos[i]);
-                    }
-                    else {
-                        var prevPhotoTime = photos[i-1].created;
+                    if(curPhotoTime < targetTime) {
+                        // We either passed it or are on it...
 
-                        var diffCurrent  = Math.abs(targetTime - curPhotoTime);
-                        var diffPrevious = Math.abs(targetTime - prevPhotoTime);
-                        
-                        if(diffCurrent < diffPrevious) {
+                        // edge case handling of first returned status being more than a year old
+                        if(i == 0) {
                             Session.set('oneYearAgoPhoto', photos[i]);
                         }
                         else {
-                            Session.set('oneYearAgoPhoto', photos[i-1]);
+                            var prevPhotoTime = photos[i-1].created;
+
+                            var diffCurrent  = Math.abs(targetTime - curPhotoTime);
+                            var diffPrevious = Math.abs(targetTime - prevPhotoTime);
+                            
+                            if(diffCurrent < diffPrevious) {
+                                Session.set('oneYearAgoPhoto', photos[i]);
+                            }
+                            else {
+                                Session.set('oneYearAgoPhoto', photos[i-1]);
+                            }
                         }
+                        return;
                     }
-                    return;
                 }
             }
 
@@ -199,31 +203,34 @@ var addStatusesToList = function (response) {
                 statuses.push(returnedStatuses[i]);
             };
 
-            // Search for the one we want
-            for (var i = offset; i < statuses.length; i++) {
-                
-                var curStatusTime = noOffset(statuses[i].updated_time) / 1000;
-                if(curStatusTime < targetTime) {
-                    // We either passed it or are on it...
+            if(statuses[statuses.length() - 1].created <= targetTime) {
 
-                    // edge case handling of first returned status being more than a year old
-                    if(i == 0) {
-                        Session.set('oneYearAgoStatus', statuses[i]);
-                    }
-                    else {
-                        var prevStatusTime = (new Date(statuses[i-1].updated_time)) / 1000;
+                // Search for the one we want
+                for (var i = offset; i < statuses.length; i++) {
+                    
+                    var curStatusTime = noOffset(statuses[i].updated_time) / 1000;
+                    if(curStatusTime < targetTime) {
+                        // We either passed it or are on it...
 
-                        var diffCurrent  = Math.abs(targetTime - curStatusTime);
-                        var diffPrevious = Math.abs(targetTime - prevStatusTime);
-                        
-                        if(diffCurrent < diffPrevious) {
+                        // edge case handling of first returned status being more than a year old
+                        if(i == 0) {
                             Session.set('oneYearAgoStatus', statuses[i]);
                         }
                         else {
-                            Session.set('oneYearAgoStatus', statuses[i-1]);
+                            var prevStatusTime = (new Date(statuses[i-1].updated_time)) / 1000;
+
+                            var diffCurrent  = Math.abs(targetTime - curStatusTime);
+                            var diffPrevious = Math.abs(targetTime - prevStatusTime);
+                            
+                            if(diffCurrent < diffPrevious) {
+                                Session.set('oneYearAgoStatus', statuses[i]);
+                            }
+                            else {
+                                Session.set('oneYearAgoStatus', statuses[i-1]);
+                            }
                         }
+                        return;
                     }
-                    return;
                 }
             }
 
