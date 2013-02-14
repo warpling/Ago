@@ -5,7 +5,9 @@ Meteor.methods({});
 var connect = function () {
     window.fbAsyncInit = function() {
         FB.init({
-            appId  : '362472857175085', // App ID
+            appId  : '362472857175085', // LIVE
+            // appId  : '421056607977628', // TESTING
+
             channelUrl : 'channel.html', // Channel File
             status : true, // check login status
             cookie : true, // enable cookies to allow the server to access the session
@@ -137,7 +139,7 @@ var getYearAgoPhoto = function () {
                 photos = response[0].fql_result_set;
 
             // If the earliest photo in the set is still farther in the future than the targetTime, don't bother searching through it.
-            if(photos[photos.length() - 1].created <= targetTime) {
+            if(photos[photos.length - 1].created <= targetTime) {
 
                 for (var i = 0; i < photos.length; i++) {
 
@@ -194,6 +196,7 @@ var addStatusesToList = function (response) {
         // findAndSetYearAgoStatus();
     }
     else if (response) {
+
         if(response.data && response.data.length > 0) {
 
             var returnedStatuses = response.data;
@@ -203,7 +206,7 @@ var addStatusesToList = function (response) {
                 statuses.push(returnedStatuses[i]);
             };
 
-            if(statuses[statuses.length() - 1].created <= targetTime) {
+            if(noOffset(statuses[statuses.length - 1].updated_time) / 1000 <= targetTime) {
 
                 // Search for the one we want
                 for (var i = offset; i < statuses.length; i++) {
